@@ -1,0 +1,7 @@
+<select *ngIf="!!list" [(ngModel)]="curr" (change)="onCurrChange()">
+  <option *ngFor="let c of list" [ngValue]="c" [selected]="c.curr==curr.curr">{{c.curr}}</option>
+</select>
+<select *ngIf="!list">
+  <option selected>Loading...</option>
+</select>
+<div [ngClass]="flagClass"></div>

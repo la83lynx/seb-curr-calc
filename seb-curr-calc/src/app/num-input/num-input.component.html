@@ -1,0 +1,9 @@
+<input
+  value={{value}}
+  (input)="onChange($event.target.value)"
+  mouseWheel
+  (mouseWheelUp)="onWheel($event, true)"
+  (mouseWheelDown)="onWheel($event, false)"
+  title="Rotate mouse wheel to adjust value, Shift+wheel: +-100, Ctrl+wheel: Cents"
+  [ngClass]="classes"
+  />

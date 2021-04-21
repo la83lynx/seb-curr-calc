@@ -1,0 +1,10 @@
+input.num-input {
+  width: 120px;
+  padding: 2px 12px;
+  text-align: right;
+
+  &.invalid {
+    background-color: darksalmon;
+    color: darkred;
+  }
+}

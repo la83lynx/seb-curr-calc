@@ -1,0 +1,43 @@
+.wrap {
+  display: inline-block;
+  background-color: rgba(128, 128, 128, 0.1);
+  border: 0.5px gray solid;
+  border-radius: 6px;
+  padding: 4px 0px;
+
+  #error>p {
+    border: 0.5px red solid;
+    border-radius: 6px;
+    background: white;
+    color: darkred;
+    padding: 4px 16px;
+    font-family: monospace;
+    font-size: small;
+  }
+}
+
+.calc-panel {
+  width: 370px;
+  padding: 4px 16px;
+
+  div {
+    display: inline-block;
+  }
+
+  .label {
+    width: 64px;
+  }
+}
+
+#swap_1>button {
+  border: 0px;
+  background: none;
+  font-weight: bold;
+  font-family: monospace;
+  width: 208px;
+  margin-left: 64px;
+
+  &:hover {
+    background:rgba(128, 128, 255, 0.4);
+  }
+}

@@ -1,0 +1,38 @@
+<div class="wrap">
+  <div id="error" *ngIf="!!currencies.error" class="calc-panel">
+    <p>{{currencies.error}}</p>
+  </div>
+  <div id="top" class="calc-panel">
+    <div id="sell" class="label">Sell</div>
+    <div>
+      <app-num-input
+        [value]="sellValue"
+        (changed)="onSellChange($event)"
+      ></app-num-input>
+      <app-curr-select
+        [list]="currencies.list"
+        [curr]="sellCurr"
+        (changed)="onSellCurrChange($event)">
+      </app-curr-select>
+    </div>
+  </div>
+  <div id="mid" class="calc-panel">
+    <div id="swap_1">
+      <button (click)="onSwap()">↕ swap ↕</button>
+    </div>
+  </div>
+  <div id="btm" class="calc-panel">
+    <div id="to_get" class="label">to get</div>
+    <div>
+      <app-num-input
+        [value]="buyValue"
+        (changed)="onBuyChange($event)"
+      ></app-num-input>
+      <app-curr-select
+        [list]="currencies.list"
+        [curr]="buyCurr"
+        (changed)="onBuyCurrChange($event)">
+      </app-curr-select>
+      </div>
+  </div>
+</div>
