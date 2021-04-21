@@ -1,10 +1,10 @@
 {
   "name": "seb-curr-calc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start:web": "ng serve",
-    "start": "ng build && start http://localhost:5000 && dotnet run ",
+    "start": "start http://localhost:5000 && dotnet run ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint"
