@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "label": "run dev",
+      "dependsOn": [
+        "frontend",
+        "backend"
+      ]
+    },
+    {
+      "label": "frontend",
+      "command": "ng build",
+      "type": "shell",
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "backend",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "${workspaceFolder}/seb-curr-calc.csproj",
+        "/property:GenerateFullPaths=true"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
