@@ -2,6 +2,9 @@
 
 This is "combined style" web application ASP.NET Core Web API backend with Angular based frontend
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.\
+Web API generated with [.NET CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/) version 3.1.402 (.net core 3.1)
+
 ## First run
 
 Requires .NET core SDK
