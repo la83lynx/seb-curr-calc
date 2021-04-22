@@ -4,7 +4,8 @@ This is "combined style" web application ASP.NET Core Web API backend with Angul
 
 ## First run
 
-In Visual studio code - open terminal at /seb-curr-calc folder,\
+Requires .NET core SDK
+Open terminal at /seb-curr-calc folder,\
 install node modules (npm install),\
 start the app (npm run start) - this compiles web client (to wwwroot), builds and runs backend, opens localhost:5000,\
 (wait for backend build to complete, then refresh localhost:5000)
