@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { CalcComponent } from './calc.component';
 
@@ -93,5 +93,35 @@ describe('CalcComponent', () => {
     expect(component.buyValue).toBe('1');
     expect(component.sellCurr.curr).toBe('USD');
     expect(component.buyCurr.curr).toBe('EUR');
+  });
+
+  it('should try to retrieve if no currencies avaialble', () => {
+    const spy = spyOn(component, 'retrieveCurrencies');
+    spy.calls.reset();
+    component.currencies = undefined;
+    component.retrieveIfNecessary();
+    expect(component.retrieveCurrencies).toHaveBeenCalled();
+    spy.calls.reset();
+    component.currencies = {};
+    component.retrieveIfNecessary();
+    expect(component.retrieveCurrencies).toHaveBeenCalled();
+  });
+
+  it('should try to retrieve if currencies expired', () => {
+    const spy = spyOn(component, 'retrieveCurrencies');
+    spy.calls.reset();
+    const dirtyExpires = new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDay());
+    component.currencies = { list: [], expires: dirtyExpires };
+    component.retrieveIfNecessary();
+    expect(component.retrieveCurrencies).toHaveBeenCalled();
+  });
+
+  it('should not try to retrieve if currencies not expired', () => {
+    const spy = spyOn(component, 'retrieveCurrencies');
+    spy.calls.reset();
+    const dirtyExpires = new Date(new Date().getFullYear() + 1, new Date().getMonth(), new Date().getDay());
+    component.currencies = { list: [], expires: dirtyExpires };
+    component.retrieveIfNecessary();
+    expect(component.retrieveCurrencies).not.toHaveBeenCalled();
   });
 });
