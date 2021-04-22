@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { str, num, getAdd } from '../code/utils';
 import { Currencies, Currency } from '../code/currencies.dto';
 import { timer } from 'rxjs';
+
+// @Todo: retrieve from cfg
+const REFRESH_INTERVAL = 60000;
+const API_URL = '/api/Calc/Latest';
+
 @Component({
   selector: 'app-calc',
   templateUrl: './calc.component.html',
@@ -21,15 +26,17 @@ export class CalcComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    timer(0, 60000).subscribe(_ => {
-        if (!this.currencies?.list
-          || (this.currencies?.expires && this.currencies.expires > new Date())
-        ) { this.retrieveCurrencies(); }
-      });
+    timer(0, REFRESH_INTERVAL).subscribe(_ => this.retrieveIfNecessary());
+  }
+
+  retrieveIfNecessary(): void {
+    if (!this.currencies?.list
+      || (this.currencies?.expires && this.currencies.expires < new Date())
+    ) { this.retrieveCurrencies(); }
   }
 
   retrieveCurrencies(): void {
-    this.http.get<Currencies>('/api/Calc/Latest')
+    this.http.get<Currencies>(API_URL)
     .subscribe(currs => {
         this.currencies = currs;
         this.buyCurr = this.currencies?.list?.find(x => x.curr === this.buyCurr.curr);
