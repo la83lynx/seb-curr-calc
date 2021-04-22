@@ -7,7 +7,7 @@ Web API generated with [.NET CLI](https://docs.microsoft.com/en-us/dotnet/core/t
 
 ## First run
 
-Requires .NET core SDK
+Requires .NET core SDK (dotnet cli)\
 Open terminal at /seb-curr-calc folder,\
 install node modules (npm install),\
 start the app (npm run start) - this compiles web client (to wwwroot), builds and runs backend, opens localhost:5000,\
