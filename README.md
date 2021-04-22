@@ -29,6 +29,7 @@ If You prefer Visual studio you can use provided .sln file to load both projects
 ## Code description
 ### Backend
 Everything is very simple - classic ASP.NET core web service with only one controller (Controllers/CalcController.cs) and only one endpoint (GET /api/Calc/Current).
+
 Controller depends on 3 services (in /Services), which are injected with built-in DI.
 Services/MemoryStore/ - trivial storage service. As long, as server runs it stores currencies value. For the needs of this app - no more complexity required
 Services/Indeterminates/ - classic indeterminates, wrapped for testability purposes. Wraps DateTime.Now .
