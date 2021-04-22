@@ -4,9 +4,9 @@ This is "combined style" web application ASP.NET Core Web API backend with Angul
 
 ## First run
 
-In Visual studio code - open terminal at /seb-curr-calc folder
-install node modules (npm install)
-start the app (npm run start) - this compiles web client (to wwwroot), builds and runs backend, opens localhost:5000
+In Visual studio code - open terminal at /seb-curr-calc folder,
+install node modules (npm install),
+start the app (npm run start) - this compiles web client (to wwwroot), builds and runs backend, opens localhost:5000,
 (wait for backend build to complete, then refresh localhost:5000)
 
 ## App description
@@ -20,9 +20,32 @@ For the sake of simplicity - currencies on backend are stored simply in memory (
 
 ## Tests
 
-run "npm test" to run frontend tests.
-some xunit backend tests are in "seb-curr-calc.test" project (in it's own dir).
+Run "npm test" to run frontend tests.
+There are some xunit backend tests are in "seb-curr-calc.test" project (in it's own dir).
 To run them you can use "dotnet test" command.
 
 If You prefer Visual studio you can use provided .sln file to load both projects.
+
+## Code description
+### Backend
+Everything is very simple - classic ASP.NET core web service with only one controller (Controllers/CalcController.cs) and only one endpoint (GET /api/Calc/Current).
+Controller depends on 3 services (in /Services), which are injected with built-in DI.
+Services/MemoryStore/ - trivial storage service. As long, as server runs it stores currencies value. For the needs of this app - no more complexity required
+Services/Indeterminates/ - classic indeterminates, wrapped for testability purposes. Wraps DateTime.Now .
+Services/CurrencyRetrieval/ - really simple implementation of retrieving xml with currencies from given url, and parsing it
+Models - contains 2 trivial DTO objects. CurrencyDTO - simple currency name and rate pair, CurrencyListDTO - wraps list of currencies, expiration date and optional error message - this model is returned from backend
+
+### Frontend
+Everything is under /src, inluding pregenerated code.
+Here's structure of component tree in generated page
+|html>body>
+|-app-component     - main application component
+|--/calc            - calc contains main calculator logic
+|----/num-input     - numeric input wraps input functionality
+|-------/mousewheel - simple mousewheel directive, used by numeric input (use mousewheel, ctrl+mousewheel, shift+mousewheel)
+|----/curr-select   - trivial currencies dropdown with a flag
+ 
+/code contains some utils and types used by above components
+
+
 
