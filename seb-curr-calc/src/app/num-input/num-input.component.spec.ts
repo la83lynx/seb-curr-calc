@@ -64,6 +64,38 @@ describe('NumInputComponent', () => {
     expect(component.changed.emit).toHaveBeenCalledWith(1);
   });
 
+  it('should increase value by 0.01 if ctrl+mouse wheel turned up', () => {
+    spyOn(component.changed, 'emit');
+    component.value = '1';
+    component.onWheel({ctrlKey: true}, true);
+
+    expect(component.changed.emit).toHaveBeenCalledWith(1.01);
+  });
+
+  it('should decrese value by 0.01 if ctlr+mouse wheel turned down', () => {
+    spyOn(component.changed, 'emit');
+    component.value = '2';
+    component.onWheel({ctrlKey: true}, false);
+
+    expect(component.changed.emit).toHaveBeenCalledWith(1.99);
+  });
+
+  it('should increase value by 100 if shift+mouse wheel turned up', () => {
+    spyOn(component.changed, 'emit');
+    component.value = '1';
+    component.onWheel({shiftKey: true}, true);
+
+    expect(component.changed.emit).toHaveBeenCalledWith(101);
+  });
+
+  it('should decrese value by 100 if shift+mouse wheel turned down', () => {
+    spyOn(component.changed, 'emit');
+    component.value = '200';
+    component.onWheel({shiftKey: true}, false);
+
+    expect(component.changed.emit).toHaveBeenCalledWith(100);
+  });
+
   it('should not go below 0 if mouse wheel turned down', () => {
     spyOn(component.changed, 'emit');
     component.value = '0';
